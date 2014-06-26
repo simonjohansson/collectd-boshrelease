@@ -1,9 +1,9 @@
 {
   "rabbitmq": {
-    "vhost": "<%= sensu.client.rabbitmq.vhost %>",
-    "password": "<%= sensu.client.rabbitmq.password %>",
-    "port": <%= sensu.client.rabbitmq.port %>,
-    "host": "<%= sensu.client.rabbitmq.host %>",
-    "user": "<%= sensu.client.rabbitmq.user %>"
+    "vhost": "<%= p("sensu.client.rabbitmq.vhost") %>",
+    "password": "<%= p("sensu.client.rabbitmq.password") %>",
+    "port": <%= p("sensu.client.rabbitmq.port") %>,
+    "host": "<%= p("sensu.client.rabbitmq.host") %>",
+    "user": "<%= p("sensu.client.rabbitmq.user") %>"
   }
 }

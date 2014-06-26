@@ -3,8 +3,8 @@
 # BOSH Specific. We need to install the DPKG blob in-situ and symlink to /opt/sensu due to hard coding of a lot of the #!ruby in the sensu pkg
 
 source /var/vcap/packages/common/utils.sh
-dpkg --instdir=/var/vcap/packages/sensu_client --unpack -E /var/vcap/packages/sensu_client/sensu_0.12.6-5_amd64.deb
-mkdir -p /opt &&  ln -s /var/vcap/packages/sensu_client/opt/sensu /opt/sensu
+dpkg --instdir=/var/vcap/jobs/sensu_client --unpack -E /var/vcap/packages/sensu_client/sensu_0.12.6-5_amd64.deb
+mkdir -p /opt &&  ln -s /var/vcap/jobs/sensu_client/opt/sensu /opt/sensu
 
 # description: Sensu monitoring framework service
 
@@ -13,11 +13,11 @@ system=debian
 
 EMBEDDED_RUBY=true
 BOSH_PACKAGE_NAME=sensu_client
-CONFIG_FILE=/var/vcap/packages/$BOSH_PACKAGE_NAME/etc/sensu/config.json
-CONFIG_DIR=/var/vcap/packages/$BOSH_PACKAGE_NAME/etc/sensu/conf.d
-EXTENSION_DIR=/var/vcap/packages/$BOSH_PACKAGE_NAME/etc/sensu/extensions
-PLUGINS_DIR=/var/vcap/packages/$BOSH_PACKAGE_NAME/etc/sensu/plugins
-HANDLERS_DIR=/var/vcap/packages/$BOSH_PACKAGE_NAME/etc/sensu/handlers
+CONFIG_FILE=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/config.json
+CONFIG_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/conf.d
+EXTENSION_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/extensions
+PLUGINS_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/plugins
+HANDLERS_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/handlers
 LOG_DIR=/var/vcap/sys/log/$BOSH_PACKAGE_NAME
 LOG_LEVEL=info
 PID_DIR=/var/vcap/sys/run/$BOSH_PACKAGE_NAME
@@ -59,9 +59,9 @@ if [ "$system" = "debian" ]; then
     }
 fi
 
-cd /var/vcap/packages/$BOSH_PACKAGE_NAME/opt/
+cd /var/vcap/jobs/$BOSH_PACKAGE_NAME/opt/
 
-exec=/var/vcap/packages/$BOSH_PACKAGE_NAME/opt/sensu/bin/$prog
+exec=/var/vcap/jobs/$BOSH_PACKAGE_NAME/opt/sensu/bin/$prog
 
 pidfile=$PID_DIR/$prog.pid
 logfile=$LOG_DIR/$prog.log
@@ -78,8 +78,8 @@ ensure_dir() {
 
 set_sensu_paths() {
     if [ "x$EMBEDDED_RUBY" = "xtrue" ]; then
-        export PATH=/var/vcap/packages/$BOSH_PACKAGE_NAME/opt/sensu/embedded/bin:$PATH:$PLUGINS_DIR:$HANDLERS_DIR
-        export GEM_PATH=/var/vcap/packages/$BOSH_PACKAGE_NAME/opt/sensu/embedded/lib/ruby/gems/2.0.0:$GEM_PATH
+        export PATH=/var/vcap/jobs/$BOSH_PACKAGE_NAME/opt/sensu/embedded/bin:$PATH:$PLUGINS_DIR:$HANDLERS_DIR
+        export GEM_PATH=/var/vcap/jobs/$BOSH_PACKAGE_NAME/opt/sensu/embedded/lib/ruby/gems/2.0.0:$GEM_PATH
     else
         export PATH=$PATH:$PLUGINS_DIR:$HANDLERS_DIR
     fi

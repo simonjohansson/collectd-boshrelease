@@ -25,5 +25,7 @@ properties:
     default: "5672"
   sensu.client.rabbitmq.user:
     description: "The user to authenticate against RabbitMQ"
+    default: "sensu"
   sensu.client.rabbitmq.password:
     description: "The password for RabbitMQ authentication"
+    default: "changeme"

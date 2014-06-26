@@ -1,9 +1,9 @@
 ---
 name: sensu_client
 templates:
-  sensu_client_ctl: bin/sensu_client_ctl
-  client.json.erb: etc/sensu/conf.d/client.json
-  rabbitmq.json.erb: etc/sensu/conf.d/rabbitmq.json
+  sensu_client_ctl: /var/vcap/packages/sensu_client/bin/sensu_client_ctl
+  client.json.erb: /var/vcap/packages/sensu_client/etc/sensu/conf.d/client.json
+  rabbitmq.json.erb: /var/vcap/packages/sensu_client/etc/sensu/conf.d/rabbitmq.json
 packages:
   - sensu_client
 

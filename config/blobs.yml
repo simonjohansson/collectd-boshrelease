@@ -3,7 +3,3 @@ sensu_client/sensu_0.12.6-5_amd64.deb:
   object_id: 613cb823-8465-4dd4-af0f-c17b58dde388
   sha: c3d55d0b3de6f069d1ba70078454ce9169aade64
   size: 38079392
-sensu_client/parsemonit.py:
-  object_id: a64c6b6f-0fd9-471c-ab22-298dccb8743b
-  sha: a492388d7527a6cb40b75ea54d0684e9982ac8e3
-  size: 2037

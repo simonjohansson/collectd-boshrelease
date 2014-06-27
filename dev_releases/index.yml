@@ -8,3 +8,5 @@ builds:
     version: 0+dev.3
   1fa6103e73f15efaa5031ef716ccba372cab9918:
     version: 0+dev.4
+  acaeaa969725d1ac900cc38b279f7350836dc2b8:
+    version: 0+dev.5

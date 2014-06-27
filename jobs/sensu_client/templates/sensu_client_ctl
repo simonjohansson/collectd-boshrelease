@@ -2,11 +2,18 @@
 
 # BOSH Specific. We need to install the DPKG blob in-situ and symlink to /opt/sensu due to hard coding of a lot of the #!ruby in the sensu pkg
 
+BOSH_PACKAGE_NAME=sensu_client
+EXTENSION_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/extensions
+
 source /var/vcap/packages/common/utils.sh
-dpkg --instdir=/var/vcap/jobs/sensu_client --unpack -E /var/vcap/packages/sensu_client/sensu_0.12.6-5_amd64.deb
-mkdir -p /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins && cp /var/vcap/packages/sensu_client/parsemonit.py /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
-chmod 755 /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
-mkdir -p /opt &&  ln -s /var/vcap/jobs/sensu_client/opt/sensu /opt/sensu
+
+# We only do this once. Extension dir won't exist if the package hasn't been installed
+if [ ! -d "$EXTENSION_DIR" ]; then
+   dpkg --instdir=/var/vcap/jobs/sensu_client -f --unpack -E /var/vcap/packages/sensu_client/sensu_0.12.6-5_amd64.deb
+   mkdir -p /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins && cp /var/vcap/packages/sensu_client/parsemonit.py /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
+   chmod 755 /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
+   mkdir -p /opt &&  ln -s /var/vcap/jobs/sensu_client/opt/sensu /opt/sensu
+fi
 
 # description: Sensu monitoring framework service
 
@@ -14,10 +21,8 @@ prog=sensu-$1
 system=debian
 
 EMBEDDED_RUBY=true
-BOSH_PACKAGE_NAME=sensu_client
 CONFIG_FILE=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/config.json
 CONFIG_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/conf.d
-EXTENSION_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/extensions
 PLUGINS_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/plugins
 HANDLERS_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/handlers
 LOG_DIR=/var/vcap/sys/log/$BOSH_PACKAGE_NAME
@@ -186,28 +191,9 @@ status() {
 # sometimes sensu components need a moment to shutdown, so
 # let's implement a waiting approach to restarts with a timeout
 restart() {
-    count=0; success=0
 
     stop
-
-    while [ $count -lt $SERVICE_MAX_WAIT ]; do
-        count=$((count + 1))
-        status &> /dev/null
-        if [ $? -eq 0 ]; then
-            # still running
-            sleep 1
-        else
-            success=1
-            break
-        fi
-    done
-
-    if [ $success = 1 ]; then
-        start
-    else
-        log_failure_msg "Timed out waiting for $prog to stop"
-        return 1
-    fi
+    start
 }
 
 case "$2" in

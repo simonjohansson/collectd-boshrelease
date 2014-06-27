@@ -141,7 +141,7 @@ stop() {
     else
         pid=$(pgrep -P1 -fl $exec | grep -v grep | grep -v bash | cut -f1 -d" ")
         if [ ! "$pid" == "" ]; then
-            kill $pid
+            kill -9 $pid
             retval=$?
             if [ $retval -eq 0 ]; then
                 rm -f $pidfile

@@ -5,7 +5,7 @@
 BOSH_PACKAGE_NAME=sensu_client
 EXTENSION_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/extensions
 
-source /var/vcap/packages/common/utils.sh
+#source /var/vcap/packages/common/utils.sh
 
 # We only do this once. Extension dir won't exist if the package hasn't been installed
 if [ ! -d "$EXTENSION_DIR" ]; then
@@ -40,13 +40,6 @@ SERVICE_MAX_WAIT=10
 ## Each platform must implement at least the following functions:
 ##
 ##     start_daemon $user $pidfile $executable "arguments"
-##     killproc -p $pid $prog
-##     log_daemon_msg $@
-##     log_action_msg $@
-##     log_success_msg $@
-##     log_failure_msg $@
-##     echo_ok
-##     echo_fail
 ##
 
 if [ "$system" = "debian" ]; then
@@ -57,12 +50,6 @@ if [ "$system" = "debian" ]; then
     ## set or override platform specific functions
     start_daemon() {
         start-stop-daemon --start --chuid $1 --pidfile $2 --exec $3 -- $4
-    }
-    echo_ok() {
-        log_end_msg 0
-    }
-    echo_fail() {
-        log_end_msg 1
     }
 fi
 
@@ -93,7 +80,6 @@ set_sensu_paths() {
 }
 
 start() {
-    log_daemon_msg "Starting $prog"
 
     [ -x $exec ] || exit 5
 
@@ -130,10 +116,9 @@ start() {
 }
 
 stop() {
-    log_daemon_msg "Stopping $prog"
 
     if [ -f $pidfile ]; then
-        killproc -p $pidfile $prog
+        kill -9 `cat /var/vcap/sys/run/sensu_client/sensu-client.pid`
         retval=$?
         if [ $retval -eq 0 ]; then
             rm -f $pidfile

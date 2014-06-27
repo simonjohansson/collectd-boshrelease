@@ -6,3 +6,5 @@ builds:
     version: 0+dev.2
   591d581440f463a6caef54ae2eb4235d5052d72f:
     version: 0+dev.3
+  1fa6103e73f15efaa5031ef716ccba372cab9918:
+    version: 0+dev.4

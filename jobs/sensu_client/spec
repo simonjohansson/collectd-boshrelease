@@ -29,3 +29,6 @@ properties:
   sensu.client.rabbitmq.password:
     description: "The password for RabbitMQ authentication"
     default: "changeme"
+  sensu.client.deployment_name:
+    description: "A custom name for this PaaS deployment which will be appended to sensu host names."
+    default: "paas1"

@@ -4,6 +4,7 @@
 
 source /var/vcap/packages/common/utils.sh
 dpkg --instdir=/var/vcap/jobs/sensu_client --unpack -E /var/vcap/packages/sensu_client/sensu_0.12.6-5_amd64.deb
+mkdir -p /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins && cp /var/vcap/packages/sensu_client/parsemonit.py /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
 mkdir -p /opt &&  ln -s /var/vcap/jobs/sensu_client/opt/sensu /opt/sensu
 
 # description: Sensu monitoring framework service

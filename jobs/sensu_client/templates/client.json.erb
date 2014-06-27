@@ -1,7 +1,7 @@
 {
   "client": {
     "address": "<%= spec.networks.send(spec.networks.methods(false).first).ip %>",
-    "subscriptions": "<%= p("sensu.client.subscriptions") %>",
+    "subscriptions": <%= p("sensu.client.subscriptions") %>,
     "name": "<%= name %><%= index %>",
     "safe_mode": "<%= p("sensu.client.safe_mode") %>"
   }

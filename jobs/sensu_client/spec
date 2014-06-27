@@ -10,7 +10,7 @@ packages:
 properties:
   sensu.client.subscriptions:
     description: "The Sensu monitoring subscriptions this client should use"
-    default: '["common", "cfmonit"]'
+    default: '["cfmonit"]'
   sensu.client.safe_mode:
     description: "Should the sensu client function in safe mode (no remote EXEC from the sensu server)"
     default: false

@@ -5,11 +5,9 @@
 BOSH_PACKAGE_NAME=sensu_client
 EXTENSION_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/extensions
 
-#source /var/vcap/packages/common/utils.sh
-
 # We only do this once. Extension dir won't exist if the package hasn't been installed
 if [ ! -d "$EXTENSION_DIR" ]; then
-   dpkg --instdir=/var/vcap/jobs/sensu_client -f --unpack -E /var/vcap/packages/sensu_client/sensu_0.12.6-5_amd64.deb
+   dpkg --instdir=/var/vcap/jobs/sensu_client --unpack -E /var/vcap/packages/sensu_client/sensu_0.12.6-5_amd64.deb
    mkdir -p /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins && cp /var/vcap/packages/sensu_client/parsemonit.py /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
    chmod 755 /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
    mkdir -p /opt &&  ln -s /var/vcap/jobs/sensu_client/opt/sensu /opt/sensu

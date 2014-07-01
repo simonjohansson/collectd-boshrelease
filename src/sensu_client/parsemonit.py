@@ -52,7 +52,7 @@ def formatbad(k):
   #input 'k' is the monit job name
   monit_single_process = subprocess.Popen("/var/vcap/bosh/bin/monit status | grep -A3 "+k, shell=True,stdout=subprocess.PIPE)
   output = monit_single_process.stdout.read().replace('\n',' ')
-  response = {'output':output, 'name':k, 'handlers':["default","twitter"], 'status':2, 'type':'monit'} 
+  response = {'output':output, 'name':k, 'handlers':["twitter"], 'status':2, 'type':'monit'} 
   sensujson = json.dumps(response)
   sendsensu(sensujson)
 

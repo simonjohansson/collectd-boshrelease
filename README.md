@@ -49,10 +49,10 @@ The aims of this release was to enable the following:
            subscriptions: ["cfmonit"]
            deployment_name: (( meta.name ))
            
-The deployment_name sets a pre-fix for the instances BOSH job name. 
-We don't report real hostnames to Sensu as they are pretty useless (BOSH ensure's we get a new one everytime it blows away a VM or updates a stemcell). Instead we report the hostname to sensu as <job_name>.<deployment_name> 
+The deployment_name sets a prefix for the instances BOSH job name. 
+We don't report real hostnames to Sensu as they are pretty useless (BOSH ensure's we get a new one everytime it blows away a VM or updates a stemcell). Instead we report the hostname to sensu as ```job_name.deployment_name```
 
-For example. We set this to our BOSH deployment name, so my 'hostnames' in sensu will be dea0.deployment1, nats0.deployment1 etc.
+For example. We use this for our BOSH deployment name, so my 'hostnames' in sensu will be ```dea0.deployment1```  or ```nats0.deployment1``` etc, allowing me to also monitor a different CF deployment, ie ```dea0.deployment2``` with the same Sensu cluster and not get confused.
 
 ### Final releases
 

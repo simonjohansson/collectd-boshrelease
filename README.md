@@ -17,16 +17,49 @@ The aims of this release was to enable the following:
 * A completley general purpose Sensu client installation in BOSH with all configuration options surfaced.
 * Polished. (it uses the sensu .DEB for example instead of compiling everything from scratch).
 
-
-### Does it work?
-
-Yes
-
-### Repeatably?
-
-Seems to ;)
-
-
 ## Getting Started
-Incomplete
+
+### CF Manifest snippets
+
+    releases:
+     - name: cf
+       version: xxx
+     - name: sensu-client
+       version: latest
+    
+    jobs:
+     - name: nats
+       templates:
+        - name: sensu_client
+          release: sensu-client
+        - name: nats
+          release: cf
+        instances: 1
+        resource_pool: infrastructure
+        networks:
+          (( merge ))
+    
+    properties:
+      sensu:
+        client:
+           rabbitmq:
+             host: "<Sensu RMQ Host>"
+             user: "<RMQ Sensu client user>"
+             password: "<Monitoring Client RMQ Password>"
+           subscriptions: ["cfmonit"]
+           deployment_name: (( meta.name ))
+           
+The deployment_name sets a pre-fix for the instances BOSH job name. 
+We don't report real hostnames to Sensu as they are pretty useless (BOSH ensure's we get a new one everytime it blows away a VM or updates a stemcell). Instead we report the hostname to sensu as <job_name>.<deployment_name> 
+
+For example. We set this to our BOSH deployment name, so my 'hostnames' in sensu will be dea0.deployment1, nats0.deployment1 etc.
+
+### Final releases
+
+There are no final releases yet, so you'll need to do the following to upload the release to your bosh director;
+
+    $ git clone https://github.com/FreightTrain/sensu-client-boshrelease.git
+    $ cd sensu-client-boshrelease
+    $ bosh create release --force
+    $ bosh upload release --rebase
 

@@ -24,7 +24,7 @@ Yes
 
 ### Repeatably?
 
-Seems too ;)
+Seems to ;)
 
 
 ## Getting Started

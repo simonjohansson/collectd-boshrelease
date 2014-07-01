@@ -9,10 +9,12 @@ EXTENSION_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/extensions
 if [ ! -d "$EXTENSION_DIR" ]; then
    dpkg --remove --force-remove-reinstreq sensu || :
    dpkg --instdir=/var/vcap/jobs/sensu_client --unpack -E /var/vcap/packages/sensu_client/sensu_0.12.6-5_amd64.deb || :
-   mkdir -p /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins && cp /var/vcap/packages/sensu_client/parsemonit.py /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
+   mkdir -p /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins || :
    chmod 755 /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
    mkdir -p /opt &&  ln -s /var/vcap/jobs/sensu_client/opt/sensu /opt/sensu
 fi
+cp -f /var/vcap/packages/sensu_client/parsemonit.py /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
+chmod 755 /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
 
 # description: Sensu monitoring framework service
 

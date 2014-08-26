@@ -12,9 +12,13 @@ if [ ! -d "$EXTENSION_DIR" ]; then
    mkdir -p /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins || :
    chmod 755 /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
    mkdir -p /opt &&  ln -s /var/vcap/jobs/sensu_client/opt/sensu /opt/sensu
+   mkdir -p /usr/lib64/nagios && ln -s /var/vcap/packages/sensu_client/plugins /usr/lib64/nagios/plugins
+
 fi
 cp -f /var/vcap/packages/sensu_client/parsemonit.py /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
 chmod 755 /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
+chmod 755 /var/vcap/jobs/sensu_client/plugins
+chmod 755 /var/vcap/jobs/sensu_client/plugins/*
 
 # description: Sensu monitoring framework service
 

@@ -3,7 +3,7 @@ name: sensu_client
 files:
 - sensu_client/sensu_0.12.6-5_amd64.deb
 - sensu_client/parsemonit.py
-- sensu_client/plugins/check_disk
+- sensu_client/npre_plugins/check_disk
 - sensu_client/nrpe_plugins/check_file_age
 - sensu_client/nrpe_plugins/check_load
 - sensu_client/nrpe_plugins/check_mem.pl

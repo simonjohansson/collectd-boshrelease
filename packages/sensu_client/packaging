@@ -2,4 +2,4 @@ set -e -x
 
 cp -v sensu_client/sensu_0.12.6-5_amd64.deb ${BOSH_INSTALL_TARGET}/
 cp -v sensu_client/*.py ${BOSH_INSTALL_TARGET}/
-cp -Rfv sensu_client/nrpe_plugins ${BOSH_INSTALL_TARGET}/
+cp -Rfv nrpe_plugins ${BOSH_INSTALL_TARGET}/

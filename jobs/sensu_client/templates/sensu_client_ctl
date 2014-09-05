@@ -22,12 +22,12 @@ EXTENSION_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/extensions
    ln -s /var/vcap/jobs/sensu_client/opt/sensu /opt/sensu
 
    # Symlink for NRPE path compatability (sharing sensu checks with our puppet controlled infra)
+   rm -Rf /usr/lib64/nagios
+   rm -Rf /usr/lib/nagios
    mkdir -p /usr/lib64/nagios
    mkdir -p /usr/lib/nagios
-   rm -Rf /usr/lib64/nagios/plugins
-   rm -Rf /usr/lib/nagios/plugins
-   ln -s /var/vcap/jobs/sensu_client/usr/lib/nagios/plugins /usr/lib64/nagios/plugins
-   ln -s /var/vcap/jobs/sensu_client/usr/lib/nagios/plugins /usr/lib/nagios/plugins
+   ln -s /var/vcap/jobs/sensu_client/usr/lib/nagios/plugins /usr/lib64/nagios/
+   ln -s /var/vcap/jobs/sensu_client/usr/lib/nagios/plugins /usr/lib/nagios/
 
 # description: Sensu monitoring framework service
 

@@ -3,7 +3,15 @@ sensu_client/sensu_0.12.6-5_amd64.deb:
   object_id: 613cb823-8465-4dd4-af0f-c17b58dde388
   sha: c3d55d0b3de6f069d1ba70078454ce9169aade64
   size: 38079392
-nrpe_plugins/nagios-plugins-all-2.0.1-1.el6.x86_64.rpm:
-  object_id: 8820354e-3975-4de5-9a22-40b67f7a5063
-  sha: 8c017cb8d9ca9eb830e9ac2aef243302f91dc79f
-  size: 13224
+nrpe_plugins/nagios-plugins-basic_1.4.14-1ubuntu1_amd64.deb:
+  object_id: 90705c55-1259-48da-b3d9-a4a2e2abcf65
+  sha: 0444a67e726e1cd27a87571490e34d7db6544cc2
+  size: 757294
+nrpe_plugins/nagios-plugins-standard_1.4.14-1ubuntu1_amd64.deb:
+  object_id: 1e4d56f8-aa8b-4763-bff0-e7df0c9814ce
+  sha: 3d6cc4ab3b7074d916b8210d96b5c22a6eddb157
+  size: 321266
+nrpe_plugins/nagios-plugins_1.4.14-1ubuntu1_all.deb:
+  object_id: 24ad2319-3437-4706-9494-8d9f790cc521
+  sha: 347b306797761db726c81fde509f53238d20c790
+  size: 138184

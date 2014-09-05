@@ -101,7 +101,7 @@ start() {
 
     if [ $? -eq 0 ]; then
         log_action_msg "$prog is already running."
-        echo_ok
+        echo "OK!"
         exit 0
     fi
 
@@ -117,14 +117,14 @@ start() {
     # make sure it's still running. some errors occur only after startup
     status &> /dev/null
     if [ $? -ne 0 ]; then
-        echo_fail
+        echo "FAIL!"
         exit 1
     fi
 
     if [ $retval -eq 0 ]; then
         touch $lockfile
     fi
-    echo_ok
+    echo "OK!"
 
     return $retval
 }
@@ -137,9 +137,9 @@ stop() {
         if [ $retval -eq 0 ]; then
             rm -f $pidfile
             rm -f $lockfile
-            echo_ok
+            echo "OK!"
         else
-            echo_fail
+            echo "FAIL!"
         fi
         return $retval
     else
@@ -150,10 +150,10 @@ stop() {
             if [ $retval -eq 0 ]; then
                 rm -f $pidfile
                 rm -f $lockfile
-                echo_ok
+                echo "OK!"
             fi
         else
-            echo_fail
+            echo "FAIL!"
         fi
     fi
 }

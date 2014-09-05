@@ -4,10 +4,10 @@
     "subscriptions": <%= p("sensu.client.subscriptions") %>,
     "name": "<%= name %><%= index %>.<%= p("sensu.client.deployment_name") %>",
     "safe_mode": <%= p("sensu.client.safe_mode") %>
-    "params": {
-      "nagios": {
-        "plugins": "/var/vcap/jobs/sensu_client/usr/lib/nagios/plugins"
-      }
-    },
+    "params":{
+        "nagios":{
+             "plugins": "/var/vcap/jobs/sensu_client/usr/lib/nagios/plugins"
+        }
+    }
   }
 }

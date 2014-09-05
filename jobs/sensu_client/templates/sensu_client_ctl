@@ -18,9 +18,10 @@ EXTENSION_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/extensions
    dpkg --instdir=/var/vcap/jobs/sensu_client --unpack -E /var/vcap/packages/sensu_client/nagios-plugins_1.4.14-1ubuntu1_all.deb || :
    #mkdir -p /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins || :
    #chmod 755 /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
-   #mkdir -p /opt &&  ln -s /var/vcap/jobs/sensu_client/opt/sensu /opt/sensu
-   mkdir -p /usr/lib64/nagios && ln -s /var/vcap/packages/sensu_client/plugins /usr/lib64/nagios/plugins
-   mkdir -p /usr/lib/nagios && ln -s /var/vcap/packages/sensu_client/plugins /usr/lib/nagios/plugins
+   # Sensu ruby modules have hard coded path to ruby under /opt/sentu
+   mkdir -p /opt &&  ln -s /var/vcap/jobs/sensu_client/opt/sensu /opt/sensu
+   mkdir -p /usr/lib64/nagios && ln -s /var/vcap/jobs/sensu_client/usr/lib/nagios/plugins /usr/lib64/nagios/plugins
+   mkdir -p /usr/lib/nagios && ln -s /var/vcap/jobs/sensu_client/usr/lib/nagios/plugins /usr/lib/nagios/plugins
 
 #fi
 #cp -f /var/vcap/packages/sensu_client/parsemonit.py /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py

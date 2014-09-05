@@ -5,4 +5,6 @@ files:
 - sensu_client/parsemonit.py
 - sensu_client/MonitOutputParser.py
 - sensu_client/SensuOutputBuilder.py
-- nrpe_plugins/nagios-plugins-all-2.0.1-1.el6.x86_64.rpm
+- nrpe_plugins/nagios-plugins_1.4.14-1ubuntu1_all.deb
+- nrpe_plugins/nagios-plugins-standard_1.4.14-1ubuntu1_amd64.deb
+- nrpe_plugins/nagios-plugins-basic_1.4.14-1ubuntu1_amd64.deb

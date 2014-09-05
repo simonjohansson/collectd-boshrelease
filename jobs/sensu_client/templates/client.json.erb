@@ -4,5 +4,10 @@
     "subscriptions": <%= p("sensu.client.subscriptions") %>,
     "name": "<%= name %><%= index %>.<%= p("sensu.client.deployment_name") %>",
     "safe_mode": <%= p("sensu.client.safe_mode") %>
+    "params": {
+      "nagios": {
+        "plugins": "/var/vcap/packages/sensu_client/nrpe_plugins"
+      }
+    },
   }
 }

@@ -5,8 +5,6 @@
 BOSH_PACKAGE_NAME=sensu_client
 EXTENSION_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/extensions
 
-# We only do this once. Extension dir won't exist if the package hasn't been installed
-#if [ ! -d "$EXTENSION_DIR" ]; then
    dpkg --remove --force-remove-reinstreq sensu || :
    dpkg --remove --force-remove-reinstreq nagios-plugins-standard || :
    dpkg --remove --force-remove-reinstreq nagios-plugins-basic || :
@@ -16,18 +14,20 @@ EXTENSION_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/extensions
    dpkg --instdir=/var/vcap/jobs/sensu_client --unpack -E /var/vcap/packages/sensu_client/nagios-plugins-basic_1.4.14-1ubuntu1_amd64.deb || :
    dpkg --instdir=/var/vcap/jobs/sensu_client --unpack -E /var/vcap/packages/sensu_client/nagios-plugins-standard_1.4.14-1ubuntu1_amd64.deb || :
    dpkg --instdir=/var/vcap/jobs/sensu_client --unpack -E /var/vcap/packages/sensu_client/nagios-plugins_1.4.14-1ubuntu1_all.deb || :
-   #mkdir -p /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins || :
-   #chmod 755 /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
-   # Sensu ruby modules have hard coded path to ruby under /opt/sentu
-   mkdir -p /opt &&  ln -s /var/vcap/jobs/sensu_client/opt/sensu /opt/sensu
-   mkdir -p /usr/lib64/nagios && ln -s /var/vcap/jobs/sensu_client/usr/lib/nagios/plugins /usr/lib64/nagios/plugins
-   mkdir -p /usr/lib/nagios && ln -s /var/vcap/jobs/sensu_client/usr/lib/nagios/plugins /usr/lib/nagios/plugins
+  
 
-#fi
-#cp -f /var/vcap/packages/sensu_client/parsemonit.py /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
-#chmod 755 /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py
-chmod 755 /var/vcap/jobs/sensu_client/plugins
-chmod 755 /var/vcap/jobs/sensu_client/plugins/*
+   # Sensu ruby modules have hard coded path to ruby under /opt/sentu
+   rm -f /opt/sensu
+   mkdir -p /opt
+   ln -s /var/vcap/jobs/sensu_client/opt/sensu /opt/sensu
+
+   # Symlink for NRPE path compatability (sharing sensu checks with our puppet controlled infra)
+   mkdir -p /usr/lib64/nagios
+   mkdir -p /usr/lib/nagios
+   rm -Rf /usr/lib64/nagios/plugins
+   rm -Rf /usr/lib/nagios/plugins
+   ln -s /var/vcap/jobs/sensu_client/usr/lib/nagios/plugins /usr/lib64/nagios/plugins
+   ln -s /var/vcap/jobs/sensu_client/usr/lib/nagios/plugins /usr/lib/nagios/plugins
 
 # description: Sensu monitoring framework service
 

@@ -12,7 +12,7 @@ class SensuOutputBuilder:
     def __init__(self):
 
         self.npre_codes = {'running' : 0}
-        self.sensu_handlers = ['twitter']
+        self.sensu_handlers = ['default']
     
 
     def create_output_for_job(self, job_name, monit_job_output):

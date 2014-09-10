@@ -17,6 +17,8 @@ EXTENSION_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/extensions
 
    # Place check_mem.py into plugins dir
    cp -fv /var/vcap/packages/sensu_client/check_mem.py /var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/plugins/.
+   chmod +x /var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/plugins/*
+   chown root /var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/plugins/*
   
 
    # Sensu ruby modules have hard coded path to ruby under /opt/sentu

@@ -14,6 +14,9 @@ EXTENSION_DIR=/var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/extensions
    dpkg --instdir=/var/vcap/jobs/sensu_client --unpack -E /var/vcap/packages/sensu_client/nagios-plugins-basic_1.4.14-1ubuntu1_amd64.deb || :
    dpkg --instdir=/var/vcap/jobs/sensu_client --unpack -E /var/vcap/packages/sensu_client/nagios-plugins-standard_1.4.14-1ubuntu1_amd64.deb || :
    dpkg --instdir=/var/vcap/jobs/sensu_client --unpack -E /var/vcap/packages/sensu_client/nagios-plugins_1.4.14-1ubuntu1_all.deb || :
+
+   # Place check_mem.py into plugins dir
+   cp -fv /var/vcap/packages/sensu_client/check_mem.py /var/vcap/jobs/$BOSH_PACKAGE_NAME/etc/sensu/plugins/.
   
 
    # Sensu ruby modules have hard coded path to ruby under /opt/sentu

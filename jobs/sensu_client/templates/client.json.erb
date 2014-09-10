@@ -6,6 +6,9 @@
     "params": {
       "nagios": {
         "plugins": "/var/vcap/jobs/sensu_client/usr/lib/nagios/plugins"
+      },
+      "ntp": {
+        "server": "ntp.esl.cisco.com"
       }
     },
     "safe_mode": <%= p("sensu.client.safe_mode") %>

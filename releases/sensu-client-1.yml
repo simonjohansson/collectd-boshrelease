@@ -1,0 +1,16 @@
+---
+packages:
+- name: sensu_client
+  version: 048eb2454e415eeb421d903846c5d42364765b5a
+  sha1: 079e6c95c14a77c3bd3117f930efd19eed0a5760
+  fingerprint: 048eb2454e415eeb421d903846c5d42364765b5a
+  dependencies: []
+jobs:
+- name: sensu_client
+  version: 8665c2aa9960bf88b24bc11c1985642d83172ad7
+  fingerprint: 8665c2aa9960bf88b24bc11c1985642d83172ad7
+  sha1: 9f7ac364c4ffdb6ee4e166dd48345945b4924e9b
+commit_hash: 5ebaab81
+uncommitted_changes: true
+name: sensu-client
+version: '1'

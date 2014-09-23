@@ -15,3 +15,13 @@ nrpe_plugins/nagios-plugins_1.4.14-1ubuntu1_all.deb:
   object_id: 24ad2319-3437-4706-9494-8d9f790cc521
   sha: 347b306797761db726c81fde509f53238d20c790
   size: 138184
+collectd/collectd-5.4.1.tar.gz:
+  object_id: 1550de5d-fbec-4f44-838d-c491161e9ef1
+  sha: !binary |-
+    ZmFhY2NhYzRkYWY0ODQ0OWJjZWZjOWQ2ZjkyMzZmOThhNWRkNWI0Yg==
+  size: 1894132
+python/Python-2.7.6.tgz:
+  object_id: d0b8aa77-968c-472a-b926-e2fc36cbed56
+  sha: !binary |-
+    ODMyOGQ5ZjFkNTU1NzRhMjg3ZGYzODRmNDkzMWEzOTQyZjAzZGE2NA==
+  size: 14725931

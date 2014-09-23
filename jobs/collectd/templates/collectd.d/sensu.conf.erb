@@ -1,0 +1,26 @@
+<% if p("collectd.sensu_output_enabled") %>
+<LoadPlugin "python">
+    Globals true
+</LoadPlugin>
+
+<Plugin "python">
+    ModulePath "/var/vcap/packages/collectd/python"
+    LogTraces true
+
+    Import "sensu"
+
+    <Module "sensu">
+        Verbose false
+        Handler "metric"
+        LowercaseMetricNames ""
+        MetricPrefix ""
+        TypesDB "/var/vcap/packages/collectd/share/collectd/types.db"
+        SensuHost "<%= p("collectd.sensu_output_host") %>"
+        Port "<%= p("collectd.sensu_output_port") %>""
+    </Module>
+
+</Plugin>
+
+<% else %> 
+# Sensu output disabled in this BOSH deployment.
+<% end %>

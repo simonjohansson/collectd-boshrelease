@@ -1,0 +1,65 @@
+---
+name: collectd
+packages:
+- collectd
+- python
+
+templates:
+  bin/collectd_ctl:                 bin/collectd_ctl
+  bin/monit_debugger:               bin/monit_debugger
+  config/collectd.conf.erb:         config/collectd.conf
+  collectd.d/csv.conf.erb:          collectd.d/csv.conf
+  collectd.d/sensu.conf.erb:        collectd.d/sensu.conf
+  collectd.d/05-syslog.conf.erb:    collectd.d/05-syslog.conf
+  collectd.d/10-cpu.conf.erb:       collectd.d/10-cpu.conf
+  collectd.d/10-df.conf.erb:        collectd.d/10-df.conf
+  collectd.d/10-disk.conf.erb:      collectd.d/10-disk.conf
+  collectd.d/10-entropy.conf.erb:   collectd.d/10-entropy.conf
+  collectd.d/10-interface.conf.erb: collectd.d/10-interface.conf
+  collectd.d/10-load.conf.erb:      collectd.d/10-load.conf
+  collectd.d/10-memory.conf.erb:    collectd.d/10-memory.conf
+  collectd.d/10-ntpd.conf.erb:      collectd.d/10-ntpd.conf
+  collectd.d/10-swap.conf.erb:      collectd.d/10-swap.conf
+  collectd.d/10-uptime.conf.erb:    collectd.d/10-uptime.conf
+  collectd.d/10-vmem.conf.erb:      collectd.d/10-vmem.conf
+  data/properties.sh.erb:           data/properties.sh
+  helpers/ctl_setup.sh:             helpers/ctl_setup.sh
+  helpers/ctl_utils.sh:             helpers/ctl_utils.sh
+
+properties:
+
+  collectd.interval:
+    default: 60
+    description: "Interval, in seconds, at which to query values."
+
+  collectd.timeout:
+    default: 2
+    description: "Consider a value list 'missing' when no update has been read or received for this number of iterations."
+
+  collectd.read_threads:
+    default: 5
+    description: "Number of threads to start for reading plugins."
+
+  collectd.hostname_prefix:
+    default: ""
+    description: "A prefix used in the hostname (suffixed by `job.index`)."
+
+  collectd.syslog_loglevel:
+    default: "info"
+    description: "Sets the log-level. Valid values: debug|info|notice|warning|err"
+
+  collectd.csv_output_enabled:
+    default: true
+    description: "Enable CSV output for Collectd (useful for debugging, suggest off for production)."
+
+  collectd.sensu_output_enabled:
+    default: true
+    description: "Enable Sensu output for Collectd"
+
+  collectd.sensu_output_host:
+    default: "localhost"
+    description: "The host that the Sensu output will send data to. Ie: sensu_output_host:sensu_output_port"
+
+  collectd.sensu_output_port:
+    default: 3030
+    description: "The port the Sensu output will send data to. Ie: sensu_output_host:sensu_output_port"

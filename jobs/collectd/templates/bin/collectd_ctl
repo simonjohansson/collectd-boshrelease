@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -e # exit immediately if a simple command exits with a non-zero status
+set -u # report the usage of uninitialized variables
+
+# Setup env vars and folders for the webapp_ctl script
+source /var/vcap/jobs/collectd/helpers/ctl_setup.sh 'collectd'
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE $JOB_NAME
+
+    echo $$ > $PIDFILE
+
+    export LD_LIBRARY_PATH="/var/vcap/packages/python/lib/"
+
+    # -f
+    # Don't fork to the background. collectd will also not close standard file descriptors, 
+    # detach from the session nor write a pid file. This is mainly thought for 'supervising' 
+    # init replacements such as runit.
+
+    exec  /var/vcap/packages/collectd/sbin/collectd -f -C $JOB_DIR/config/collectd.conf \
+      >>$LOG_DIR/$JOB_NAME.stdout.log \
+      2>>$LOG_DIR/$JOB_NAME.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: collectd_ctl {start|stop}"
+
+    ;;
+
+esac
+exit 0

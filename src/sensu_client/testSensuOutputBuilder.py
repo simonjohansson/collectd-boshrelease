@@ -11,7 +11,7 @@ class TestSequenceFunctions(unittest.TestCase):
     def setUp(self):
 
         self.sensu_healthy_job_output = {'status' : 'running'}
-        self.sensu_healthy_json_output='{"status": 0, "name": "test job", "handlers": ["twitter"], "monit data status": "running", "subscribers": "cfmonit", "output": "Monit Job test job is running", "type": "monit"}'
+        self.sensu_healthy_json_output='{"status": 0, "name": "test job", "handlers": ["default"], "monit data status": "running", "subscribers": "cfmonit", "output": "Monit Job test job is running", "type": "monit"}'
         self.sensu_unhealthy_job_output = {'status' : 'not monitored'}
 
     def test_sensu_output_contains_the_correct_data(self):

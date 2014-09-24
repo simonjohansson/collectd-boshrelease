@@ -25,3 +25,13 @@ python/Python-2.7.6.tgz:
   sha: !binary |-
     ODMyOGQ5ZjFkNTU1NzRhMjg3ZGYzODRmNDkzMWEzOTQyZjAzZGE2NA==
   size: 14725931
+yajl/yajl-2.1.0.tar.gz:
+  object_id: 753c7014-9847-431b-a1ee-7eb438f99f3b
+  sha: !binary |-
+    MjljZTJiOTY5NWFlOTNlMWIwYjM0OWEyMmNlYTgwNjdmMjVhOTAyNQ==
+  size: 83997
+python/Python-2.7.8.tgz:
+  object_id: 5de221d2-949e-4bf3-a96d-1444f25ef0d0
+  sha: !binary |-
+    NTExOTYwZGQ3ODQ1MWEwNmM5ZGY3NjUwOTYzNWFlZWMwNWIyMDUxYQ==
+  size: 14846119

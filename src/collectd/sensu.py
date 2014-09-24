@@ -1,3 +1,4 @@
+# -------------------------------------------------------------------
 # Copyright 2014 Jason Martin
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +14,8 @@
 # limitations under the License.
 #
 # Based heavily on Collectd-Librato
+# Original Source: https://github.com/jhmartin/collectd-sensu
+# -------------------------------------------------------------------
 
 import collectd
 import json

@@ -4,7 +4,7 @@
 
 The aims of this release was to enable the following:
 
-* Install the Sensu client in each instance of a Cloud Foundry PaaS deployment using BOSH.
+* Install the Sensu Client in each instance of a Cloud Foundry PaaS deployment using BOSH.
 * Provide a script to observe the monit jobs on the instance for failures.
 * Have sensu schedule running the script regularly.
 * Have the script surface good/bad information for each monit job up to sensu.
@@ -192,7 +192,15 @@ Heira for Sensu server role:
    
 
             
+         
+## Credit
+
+Third Party Code built into this BOSH release:
             
+#### collectd-sensu - [https://github.com/jhmartin/collectd-sensu](https://github.com/jhmartin/collectd-sensu)
+
+This CollectD plugin has been used, with some slight modifications, to publish CollectD values using Sensu.
+
+#### logsearch-boshrelease - [https://github.com/logsearch/logsearch-boshrelease](https://github.com/logsearch/logsearch-boshrelease)
             
-            
-            
+The BOSH Job for CollectD packaged within this BOSH Release is a customized version of the CollectD job from the Logsearch BOSH release.

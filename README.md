@@ -1,5 +1,7 @@
 # Sensu Client BOSH Release
 
+![image](https://api.travis-ci.org/FreightTrain/sensu-client-boshrelease.svg?branch=master)
+
 ## What it is
 
 The aims of this release was to enable the following:

@@ -1,6 +1,6 @@
 # Sensu Client BOSH Release
 
-![image](https://api.travis-ci.org/FreightTrain/sensu-client-boshrelease.svg?branch=master)
+[![image](https://api.travis-ci.org/FreightTrain/sensu-client-boshrelease.svg?branch=master)](https://travis-ci.org/FreightTrain/sensu-client-boshrelease/builds)
 
 ## What it is
 

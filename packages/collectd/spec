@@ -1,0 +1,11 @@
+---
+name: collectd
+meta:
+  source: https://collectd.org/download.shtml
+  direct: https://collectd.org/files/collectd-5.4.1.tar.gz
+dependencies:
+  - python
+  - yajl
+files:
+  - collectd/collectd-5.4.1.tar.gz
+  - collectd/sensu.py

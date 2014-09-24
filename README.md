@@ -1,21 +1,28 @@
 # Sensu Client BOSH Release
 
+![image](https://api.travis-ci.org/FreightTrain/sensu-client-boshrelease.svg?branch=master)
+
 ## What it is
 
-The aims of this release was to enable the following:
+This release contains the following:
 
-* Install the Sensu client in each instance of a Cloud Foundry PaaS deployment using BOSH.
-* Provide a script to observe the monit jobs on the instance for failures.
-* Have sensu schedule running the script regularly.
-* Have the script surface good/bad information for each monit job up to sensu.
-* Not use a list of hard-coded monit jobs, so new components will automatically get monitored.
-* Output alerts via sensu for a failed/recovered monit job.
+* A BOSH job to install a [Sensu Client](http://sensuapp.org/docs/0.11/clients).
+  * Sensu Client is configured to monitor the vitals of the Host.
+  * Sensu Client also monitors the health of Monit jobs running on the machine.
+   
+* A BOSH job to install [Collectd](https://collectd.org/).
+  * Collectd is configured, by default, to send metric data over Sensu.
+  * Collectd sends metrics for the vitals of the host.
+  * Collectd sends metrics for CloudFoundry applications by monitoring /varz endpoints.
+     * Currently supported CloudFoundry Jobs are:
+         * GoRouter 
 
+The purpose of this release is to be deployed alongside [cf-release](https://github.com/cloudfoundry/cf-release) to provide monitoring and alerting on the CloudFoundry deployment.
 
 ## What it isn't
 
-* A completley general purpose Sensu client installation in BOSH with all configuration options surfaced.
-* Polished. (it uses the sensu .DEB for example instead of compiling everything from scratch).
+* A general purpose Sensu Client installation surfacing all configuration options.
+* Best practice - Sensu Client is installed .DEB for example instead of compiling everything from scratch.
 
 ## Getting Started
 
@@ -30,10 +37,12 @@ The aims of this release was to enable the following:
     jobs:
      - name: nats
        templates:
-        - name: sensu_client
-          release: sensu-client
         - name: nats
           release: cf
+        - name: sensu_client
+          release: sensu-client
+        - name: collectd
+          release: sensu-client
         instances: 1
         resource_pool: infrastructure
         networks:
@@ -42,26 +51,20 @@ The aims of this release was to enable the following:
     properties:
       sensu:
         client:
-           rabbitmq:
-             host: "<Sensu RMQ Host>"
-             user: "<RMQ Sensu client user>"
-             password: "<Monitoring Client RMQ Password>"
-           subscriptions: ["cfmonit"]
-           deployment_name: (( meta.name ))
-           
+          rabbitmq:
+            host: "<Sensu RMQ Host>"
+            user: "<RMQ Sensu client user>"
+            password: "<Monitoring Client RMQ Password>"
+          subscriptions: ["cfmonit"]
+          deployment_name: (( meta.name ))
+      collectd:
+        hostname_prefix: "(( meta.name ))."
+
+
 The deployment_name sets a prefix for the instances BOSH job name. 
 We don't report real hostnames to Sensu as they are pretty useless (BOSH ensure's we get a new one everytime it blows away a VM or updates a stemcell). Instead we report the hostname to sensu as ```job_name.deployment_name```
 
 For example. We use this for our BOSH deployment name, so my 'hostnames' in sensu will be ```dea0.deployment1```  or ```nats0.deployment1``` etc, allowing me to also monitor a different CF deployment, ie ```dea0.deployment2``` with the same Sensu cluster and not get confused.
-
-### Final releases
-
-There are no final releases yet, so you'll need to do the following to upload the release to your bosh director;
-
-    $ git clone https://github.com/FreightTrain/sensu-client-boshrelease.git
-    $ cd sensu-client-boshrelease
-    $ bosh create release --force
-    $ bosh upload release --rebase
     
 ### Technical Info
 
@@ -192,7 +195,15 @@ Heira for Sensu server role:
    
 
             
+         
+## Credit
+
+Third Party Code built into this BOSH release:
             
-            
-            
-            
+#### collectd-sensu
+[github.com/jhmartin/collectd-sensu](https://github.com/jhmartin/collectd-sensu)<br>
+This CollectD plugin has been used, with some slight modifications, to publish CollectD values using Sensu.
+
+#### logsearch-boshrelease
+[github.com/logsearch/logsearch-boshrelease](https://github.com/logsearch/logsearch-boshrelease)<br>
+The BOSH Job for CollectD packaged within this BOSH Release is a customized version of the CollectD job from the Logsearch BOSH release.

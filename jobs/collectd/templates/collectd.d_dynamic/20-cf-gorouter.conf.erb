@@ -1,0 +1,58 @@
+<%# ---------------------------------------------------------------------------------- %>
+<%# This CollectD configuration file is disabled by default on all machines.           %>
+<%# Running collectd_ctl enables the appropriate dynamic configuation for the VM.      %>
+<%# ---------------------------------------------------------------------------------- %>
+
+<% if p("collectd.gorouter_varz_monitoring_enabled") %>
+<LoadPlugin "curl_json">
+    Globals true
+</LoadPlugin>
+
+<Plugin curl_json>
+  <URL "http://<%= spec.networks.send(spec.networks.methods(false).first).ip %>:<%= p("router.status.port") %>/varz">
+   User "<%= p("router.status.user") %>"
+   Password "<%= p("router.status.password") %>"
+   Instance "gorouter"
+
+    <Key "bad_requests">
+      Type "counter"
+    </Key>
+
+    <Key "requests">
+      Type "counter"
+    </Key>
+
+    <Key "responses_2xx">
+      Type "counter"
+    </Key>
+
+    <Key "responses_3xx">
+      Type "counter"
+    </Key>
+
+    <Key "responses_4xx">
+      Type "counter"
+    </Key>
+
+    <Key "responses_5xx">
+      Type "counter"
+    </Key>
+
+    <Key "responses_xxx">
+      Type "counter"
+    </Key>
+
+    <Key "droplets">
+      Type "gauge"
+    </Key>
+
+    <Key "urls">
+      Type "gauge"
+    </Key>
+
+  </URL>
+</Plugin>
+
+<% else %> 
+# GoRouter Monitoring is disabled in this BOSH deployment.
+<% end %>

@@ -15,6 +15,7 @@ templates:
 packages:
   - ruby
   - sensu
+  - sensu_client
   - nagios-monitoring-plugins
 
 properties:

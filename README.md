@@ -1,5 +1,7 @@
 # Sensu Client BOSH Release
 
+<a href="http://docs.cloudfoundry.org/bosh/"><img src="https://raw.githubusercontent.com/FreightTrain/sensu-client-boshrelease/master/docs/images/logos/bosh-clam.png" style="height:60px"/></a> <a href="http://sensuapp.org/"><img src="https://raw.githubusercontent.com/FreightTrain/sensu-client-boshrelease/master/docs/images/logos/sensu_fan.png" style="height:60px"/></a> <a href="https://collectd.org/"><img src="https://raw.githubusercontent.com/FreightTrain/sensu-client-boshrelease/master/docs/images/logos/collectd.png" style="height:60px"/></a>
+
 [![image](https://api.travis-ci.org/FreightTrain/sensu-client-boshrelease.svg?branch=master)](https://travis-ci.org/FreightTrain/sensu-client-boshrelease/builds)
 
 ## What it is

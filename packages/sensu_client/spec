@@ -1,11 +1,6 @@
 ---
 name: sensu_client
 files:
-- sensu_client/sensu_0.12.6-5_amd64.deb
 - sensu_client/parsemonit.py
 - sensu_client/MonitOutputParser.py
 - sensu_client/SensuOutputBuilder.py
-- sensu_client/check_mem.py
-- nrpe_plugins/nagios-plugins_1.4.14-1ubuntu1_all.deb
-- nrpe_plugins/nagios-plugins-standard_1.4.14-1ubuntu1_amd64.deb
-- nrpe_plugins/nagios-plugins-basic_1.4.14-1ubuntu1_amd64.deb

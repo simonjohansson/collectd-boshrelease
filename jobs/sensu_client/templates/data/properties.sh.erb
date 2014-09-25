@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # -------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -20,26 +22,20 @@
 # https://github.com/logsearch/logsearch-boshrelease
 # -------------------------------------------------------------------
 
-set -e # exit immediately if a simple command exits with a non-zero status
-set -u # report the usage of uninitialized variables
+#
+# See if we can get the current IP Address From BOSH
+# spec.networks.send(spec.networks.methods(false).first).ip - "<%= spec.networks.send(spec.networks.methods(false).first).ip %>"
+# spec.networks - "<%= spec.networks %>"
+#
 
-# Detect # of CPUs so make jobs can be parallelized
-CPUS=$(grep -c ^processor /proc/cpuinfo)
+# job template binding variables
 
-# Available variables
-# $BOSH_COMPILE_TARGET - where this package & spec'd source files are available
-# $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
-export HOME=/var/vcap
+# job name & index of this VM within cluster
+# e.g. JOB_NAME=redis, JOB_INDEX=0
 
-PYTHON_VERSION="Python-2.7.8"
+export NAME='<%= name %>'
 
-tar xfv python/${PYTHON_VERSION}.tgz
+export JOB_INDEX=<%= index %>
 
-(
-    cd ${PYTHON_VERSION}
-    ./configure --prefix=${BOSH_INSTALL_TARGET} --enable-shared
-    make -j${CPUS} && make install
-)
-
-# Alternatively, to copy archive contents:
-# cp -a ${PYTHON_VERSION}/* $BOSH_INSTALL_TARGET
+# full job name, like redis/0 or webapp/3
+export JOB_FULL="$NAME/$JOB_INDEX"

@@ -35,3 +35,33 @@ python/Python-2.7.8.tgz:
   sha: !binary |-
     NTExOTYwZGQ3ODQ1MWEwNmM5ZGY3NjUwOTYzNWFlZWMwNWIyMDUxYQ==
   size: 14846119
+libyaml/yaml-0.1.5.tar.gz:
+  object_id: f5980894-6583-4d09-a0e9-4d54640e3a9b
+  sha: !binary |-
+    OGI3OGNiOWY3NTljN2Q4MGRiOGE3MzI4YzBlYmVjZmUzNGZkZTczNw==
+  size: 504897
+nagios-monitoring-plugins/monitoring-plugins-2.0.tar.gz:
+  object_id: 3d0983a4-1783-479d-aa76-10cf577ea0b3
+  sha: !binary |-
+    NjYxNDBkZTFkYmM5NzE1ZWU4ZDk3OThlN2QzNDVhZjUzZDU0NDg3ZA==
+  size: 2610000
+ruby/bundler-1.7.3.gem:
+  object_id: 6859171c-db99-4e49-a1d0-148ffa97ec82
+  sha: !binary |-
+    NjE4ZmRmNzZmMzVlODczZTQ5MGUxNWNkYWM4N2JlN2Y3MjQ3ZjgxYg==
+  size: 299520
+ruby/ruby-2.1.3.tar.gz:
+  object_id: 269cfc83-2c3a-4be7-9e6d-663d538898f3
+  sha: !binary |-
+    Y2E2ZTEyMGU1YTJlZTdkZWIzYTc0OTM2OTZiNWJiYzI4YmZjMjIzNg==
+  size: 15129183
+ruby/rubygems-2.4.1.tgz:
+  object_id: 58b7640c-7f27-48ac-a7a5-5a4b84734612
+  sha: !binary |-
+    MDE2Yjk4ZDhmZmNhM2IxYWY0Yzc5Nzc4OGQ3NWMxYTY3ZjM4ZDQxZA==
+  size: 437226
+sensu/sensu-0.13.1.tar.gz:
+  object_id: f8406dac-2267-4fbc-b3c8-7f53f9df62fb
+  sha: !binary |-
+    NTE3ZTA1OWJiNWQ4ODg1NmU2NDNlOTQzNjdkNzU4OGZiMTA1NjAzNQ==
+  size: 46461

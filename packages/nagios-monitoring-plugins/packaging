@@ -1,0 +1,20 @@
+# -------------------------------------------------------------------
+# Based on the Nagios Monitoring Plugins build instructions:
+# https://www.monitoring-plugins.org/doc/faq/compilation.html
+# -------------------------------------------------------------------
+
+NMP_VERSION="2.0"
+
+# When we run ./configure it will let us know what plugins were built and which were enabled.
+# This information gets captured within the build artefacts so that anyone using the release can
+# see what plugins are available to them.
+CONFIGURE_LOG_LOCATION="${BOSH_INSTALL_TARGET}/monitoring-plugins.configure.log"
+
+gzip -dc nagios-monitoring-plugins/monitoring-plugins-${NMP_VERSION}.tar.gz | tar -xf -
+
+(
+    cd monitoring-plugins-${NMP_VERSION}
+    ./configure --prefix=${BOSH_INSTALL_TARGET} >> ${CONFIGURE_LOG_LOCATION}
+    make
+    make install
+)

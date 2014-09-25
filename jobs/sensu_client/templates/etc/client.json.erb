@@ -5,7 +5,7 @@
     "name": "<%= name %><%= index %>.<%= p("sensu.client.deployment_name") %>",
     "params": {
       "nagios": {
-        "plugins": "/var/vcap/jobs/sensu_client/usr/lib/nagios/plugins"
+        "plugins": "/var/vcap/packages/nagios-monitoring-plugins/libexec"
       },
       "ntp": {
         "server": "ntp.esl.cisco.com"

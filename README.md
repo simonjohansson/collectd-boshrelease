@@ -22,11 +22,10 @@ The purpose of this release is to be deployed alongside [cf-release](https://git
 ## What it isn't
 
 * A general purpose Sensu Client installation surfacing all configuration options.
-* Best practice - Sensu Client is installed .DEB for example instead of compiling everything from scratch.
 
 ## Getting Started
 
-### CF Manifest snippets
+### Example CF Manifest Fragment
 
     releases:
      - name: cf
@@ -60,141 +59,46 @@ The purpose of this release is to be deployed alongside [cf-release](https://git
       collectd:
         hostname_prefix: "(( meta.name ))."
 
+### CF Manifest Configuration
 
-The deployment_name sets a prefix for the instances BOSH job name. 
-We don't report real hostnames to Sensu as they are pretty useless (BOSH ensure's we get a new one everytime it blows away a VM or updates a stemcell). Instead we report the hostname to sensu as ```job_name.deployment_name```
+We don't report BOSH UUID hostnames to Sensu. Instead we report the hostname to sensu as 
 
-For example. We use this for our BOSH deployment name, so my 'hostnames' in sensu will be ```dea0.deployment1```  or ```nats0.deployment1``` etc, allowing me to also monitor a different CF deployment, ie ```dea0.deployment2``` with the same Sensu cluster and not get confused.
+    job_name.deployment_name
     
-### Technical Info
 
-#### Startup
+The prefix is set by the property ```sensu.deployment_name```.
 
-The release includes two source files. 
+The host names shown in Sensu will look similar to the following:
 
-* A debian '.deb' debian package of the standard sensu installation (grabbed directly from Sensu's repo) 
-* A custom check script for running monit status/monit summary and parsing the output
-
-the DEB is in the release blobstore, the check script is written (questionably!) in python and under src/
-
-The packaging script just moves the two files to /var/vcap/packages/sensu_client/.
-There are also three template files:
-
-    - rabbitmq.json - the configuration file for the sensu client to talk to RMQ
-    - client.json - the standard configuration file for the sensu client
-    - sensu_client_ctl - a start/stop script based losley on the one from the sensu DEB
-
-The single job, sensu-client then has all the logic (read, hackery) for making the magic happen in it's startup script.
-
-    - Unpacks the DEB at a fake root of /var/vcap/jobs/sensu_client
-        - The templated client and rabbitmq .json match up to the needed locations /var/vcap/jobs/sensu_client/etc/sensu/conf.d
-        
-    - Maps /opt/sensu to /var/vcap/jobs/sensu_client/opt/sensu (ln -s) due to hardcoded paths in Sensu's ruby
-    - Moves/updates the custom monit check script into /var/vcap/jobs/sensu_client/etc/sensu/cpgplugins directory (as thats where we have configured the sensu check on the server to execute the script from. Custom DIR for all of our teams plugins)
+    dea0.deployment1
+    dea1.deployment1
+    nats0.deployment1
+    ...
     
-    - Starts sensu
-    
-#### Normal operation
+## Configuring Sensu
 
-A Sensu check should be configured on the sensu server attached to subscription 'monitcf' (default name in the release and check script). This executes ```/var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py``` every 5 seconds.
+### Configuring the Sensu Client
 
-The script itself then reports the health of each monit job as it's own check (via the localhost:3030 sensu TCP port) speaking sensu's reporting format. Therefore a failed ```nats``` monit job will show in sensu as check type ```nats```
+The ```sensu-client``` job contains two config files:
 
-The script queries monit for all jobs and puts them in an error state if they are anything other than 'running', therefore all new monit jobs will be monitored automatically.
+* ```/etc/client.json```<br>To configure the sensu client.
 
-Because the script is writing out it's own Sensu style alerts over localhost:3030, the script itself contains some information which needs templating out into the monit configuration, such as:
+* ```/etc/rabbitmq.json.erb```<br>To configure how sensu client talks to RMQ.
 
-    - The subscription the reported check is claiming to be on
-    - The handlers which should receive the check in sensu-server.
-    
-I'm currently outputting to twitter at the sensu headend as a demo, using the handler here:
-https://github.com/matjohn2/sensu-community-plugins/blob/master/handlers/notification/twitter_v5.rb
+### Configuring checks on the Sensu Server 
 
+A Sensu check should be configured on the Sensu Server attached to subscription ```monitcf``` (default name in the release and check script). 
 
-## Sensu Server Configuration
+This executes ```/var/vcap/packages/sensu_client/parsemonit.py``` every 5 seconds.
 
-Here are some snippets from our sensu server configuration that may be helpful.
+This check reports the health of each monit job as it's own check (via the localhost:3030 sensu TCP port). The result is that a failed ```nats``` monit job will show in Sensu as check type ```nats```
 
-We are currently wrapping the sensu puppet module to install the server components with parameterized classes pulling data from heira lookups (standard, but always useful to give people a branch to google from if new to the tech).
+### Installing a Sensu Server 
 
-Puppet module manifest:
-
-                        class wrapperclass::monitoring::sensuserver($sensu_rabbitmq_password,$sensu_client_rabbitmq_password){
-                        
-                        ensure_packages(["mysql-devel.x86_64","sqlite-devel.x86_64", "libxml2-devel", "libxslt-devel", "wget", "git", "bzr", "golang"])
-                    
-            
-                        # Needed for sensu-puppet module deps
-                        package{ "rubygem-json": ensure => "installed" } ->
-                        
-                        
-                         firewall { "200 allow Sensu API and Dashboard access and 3000 for demo sensu-admin UI":
-                            port   => [4567, 8080, 3000],
-                            proto  => tcp,
-                            state  => NEW,
-                            action => accept,
-                            }
-                        
-                        # Use sensu module to install sensu
-                        
-                        include ::sensu
-                        
-                        ## Checks
-                        
-                        ::sensu::check { 'parsemonit':
-                            command => '/var/vcap/jobs/sensu_client/etc/sensu/cpgplugins/parsemonit.py',
-                            subscribers => 'cfmonit',
-                            interval => '5',
-                            standalone => false,
-                            ensure => 'present'
-                          }
-                        
-                        ## Handlers
-                        
-                        ::sensu::handler { 'twitter':
-                            type => 'pipe',
-                            command => '/etc/sensu/handlers/twitter.rb',
-                            source => 'puppet:///modules/cpg/monitoring/sensu/handlers/twitter.rb',
-                            config => { 
-                                      brokenpaas => { 
-                                            sensusub => "cfmonit", 
-                                            consumer_key => "TheseAreMyAPIKeys",
-                                            consumer_secret => "ThereAreManyLikeItButTheseOnesAreMine",
-                                            oauth_token => "MyApiKeysLetMeSendAlertsToOtherPeopleViaTwitter",
-                                            oauth_token_secret => "SoThatIcanGoToThePub"
-                                            } 
-                                      }
-                            }
-            
-Heira for Sensu server role:
-
-        ---
-        classes:
-          - wrapperclass::monitoring::sensuserver
-        
-        wrapperclass::monitoring::sensuserver::sensu_rabbitmq_password: "somepass"
-        wrapperclass::monitoring::sensuserver::sensu_client_rabbitmq_password: "somepass"
-        
-        sensu::server: true
-        sensu::client: true
-        
-        sensu::api: true
-        sensu::dashboard: true
-        sensu::dashboard_password: somepass
-        sensu::install_repo: true
-        sensu::repo: 'unstable'
-        sensu::purge_config: false
-        sensu::rabbitmq_password: "somepass"
-        sensu::rabbitmq_port: 5672
-        sensu::rabbitmq_vhost: "sensu"
-        sensu::rabbitmq_host: 192.168.1.1
-        sensu::redis_host: 192.168.1.1
-        sensu::use_embedded_ruby: true
-        sensu::subscriptions: 'common'
-
-   
-
-            
+This BOSH release does not currently contain jobs to install a Sensu Server. The following references should help you on your way:
+  
+* [Sensu Documentation :: Installing Sensu](http://sensuapp.org/docs/0.11/installing_sensu)
+* [The Puppet and Heira configutation we use :: InstallingSensuServer.md](https://github.com/FreightTrain/sensu-client-boshrelease/blob/master/docs/InstallingSensuServer.md)
          
 ## Credit
 

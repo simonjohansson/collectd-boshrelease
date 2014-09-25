@@ -1,34 +1,52 @@
 ---
 name: sensu_client
 templates:
-  sensu_client_ctl: bin/sensu_client_ctl
-  client.json.erb: etc/sensu/conf.d/client.json
-  rabbitmq.json.erb: etc/sensu/conf.d/rabbitmq.json
+  bin/sensu_client_ctl:      bin/sensu_client_ctl
+  bin/monit_debugger:        bin/monit_debugger
+
+  data/properties.sh.erb:    data/properties.sh
+
+  helpers/ctl_setup.sh:      helpers/ctl_setup.sh
+  helpers/ctl_utils.sh:      helpers/ctl_utils.sh
+
+  etc/client.json.erb:       etc/sensu/conf.d/client.json
+  etc/rabbitmq.json.erb:     etc/sensu/conf.d/rabbitmq.json
+
 packages:
+  - ruby
+  - sensu
   - sensu_client
+  - nagios-monitoring-plugins
 
 properties:
   sensu.client.subscriptions:
     description: "The Sensu monitoring subscriptions this client should use"
     default: '["cfmonit"]'
+
   sensu.client.safe_mode:
     description: "Should the sensu client function in safe mode (no remote EXEC from the sensu server)"
     default: false
+
   sensu.client.rabbitmq.vhost:
     description: "The RabbitMQ vhost for this sensu client to register with"
     default: "sensu"
+
   sensu.client.rabbitmq.host:
     description: "The RabbitMQ server for this sensu client to connect to"
     default: "127.0.0.1"
+
   sensu.client.rabbitmq.port:
     description: "The port the destination RabbitMQ server is listening on"
     default: "5672"
+
   sensu.client.rabbitmq.user:
     description: "The user to authenticate against RabbitMQ"
     default: "sensu"
+
   sensu.client.rabbitmq.password:
     description: "The password for RabbitMQ authentication"
     default: "changeme"
+
   sensu.client.deployment_name:
     description: "A custom name for this PaaS deployment which will be appended to sensu host names."
     default: "paas1"

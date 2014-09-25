@@ -1,6 +1,6 @@
 check process sensu_client
-  with pidfile /var/vcap/sys/run/sensu_client/sensu-client.pid
-  start program "/var/vcap/jobs/sensu_client/bin/sensu_client_ctl client start"
-  stop program "/var/vcap/jobs/sensu_client/bin/sensu_client_ctl client stop"
+  with pidfile /var/vcap/sys/run/sensu_client/sensu_client.pid
+  start program "/var/vcap/jobs/sensu_client/bin/monit_debugger sensu_client_ctl '/var/vcap/jobs/sensu_client/bin/sensu_client_ctl start'"
+  stop program "/var/vcap/jobs/sensu_client/bin/monit_debugger sensu_client_ctl '/var/vcap/jobs/sensu_client/bin/sensu_client_ctl stop'"
   group vcap
 

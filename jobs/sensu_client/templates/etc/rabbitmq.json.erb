@@ -1,0 +1,15 @@
+
+<%# ---------------------------------------------------------------------------------- %>
+<%# Sensu Configuration                                                                %>
+<%# See: http://sensuapp.org/docs/0.11/installing_sensu#configure-sensu                %>
+<%# ---------------------------------------------------------------------------------- %>
+
+{
+  "rabbitmq": {
+    "vhost": "<%= p("sensu.client.rabbitmq.vhost") %>",
+    "password": "<%= p("sensu.client.rabbitmq.password") %>",
+    "port": "<%= p("sensu.client.rabbitmq.port") %>",
+    "host": "<%= p("sensu.client.rabbitmq.host") %>",
+    "user": "<%= p("sensu.client.rabbitmq.user") %>"
+  }
+}

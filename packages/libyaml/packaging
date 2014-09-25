@@ -17,29 +17,18 @@
 # under the License.
 #
 # Original Source:
-# https://github.com/logsearch/logsearch-boshrelease
+# https://github.com/cloudfoundry-community/jenkins-boshrelease
 # -------------------------------------------------------------------
 
 set -e # exit immediately if a simple command exits with a non-zero status
 set -u # report the usage of uninitialized variables
 
-# Detect # of CPUs so make jobs can be parallelized
-CPUS=$(grep -c ^processor /proc/cpuinfo)
-
-# Available variables
-# $BOSH_COMPILE_TARGET - where this package & spec'd source files are available
-# $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
-export HOME=/var/vcap
-
-PYTHON_VERSION="Python-2.7.8"
-
-tar xfv python/${PYTHON_VERSION}.tgz
+tar xzf libyaml/yaml-0.1.5.tar.gz
 
 (
-    cd ${PYTHON_VERSION}
-    ./configure --prefix=${BOSH_INSTALL_TARGET} --enable-shared
-    make -j${CPUS} && make install
-)
+    cd yaml-0.1.5
+    ./configure --prefix=${BOSH_INSTALL_TARGET}
 
-# Alternatively, to copy archive contents:
-# cp -a ${PYTHON_VERSION}/* $BOSH_INSTALL_TARGET
+    make
+    make install
+)

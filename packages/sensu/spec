@@ -4,6 +4,6 @@ meta:
   source: https://github.com/sensu/sensu/releases
   direct: https://github.com/sensu/sensu/archive/v0.13.1.tar.gz
 dependencies:
-  - ruby
+  - sensu-ruby
 files:
   - sensu/sensu-0.13.1.tar.gz

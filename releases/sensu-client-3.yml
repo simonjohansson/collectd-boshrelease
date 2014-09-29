@@ -1,0 +1,89 @@
+---
+packages:
+- name: collectd
+  version: !binary |-
+    ZGI2YTMyOTQwYjYyOTJiMWRjYmNjYjAxNmEyY2U3YTUwNTZiZDMyZA==
+  sha1: !binary |-
+    YzJhNjc3MDgzZGU3MDdkYWQxMGRlNjYxYzUwYTM1YmU2MmZlYmQzZg==
+  fingerprint: !binary |-
+    ZGI2YTMyOTQwYjYyOTJiMWRjYmNjYjAxNmEyY2U3YTUwNTZiZDMyZA==
+  dependencies:
+  - python
+  - yajl
+- name: nagios-monitoring-plugins
+  version: !binary |-
+    MjBmODdjYWZlODUzYTA0MWE0ZjA5ZTAwZWNlM2RlZTFkMjBhYzNkMA==
+  sha1: !binary |-
+    OTgwMjgxYWY4ZTk3ZTIyYjM5MWMwYjZjOGQwMjQ4NWRiYzExZGRlMg==
+  fingerprint: !binary |-
+    MjBmODdjYWZlODUzYTA0MWE0ZjA5ZTAwZWNlM2RlZTFkMjBhYzNkMA==
+  dependencies: []
+- name: python
+  version: !binary |-
+    NDg0MDc1ZDgxZDQxY2UzOTg1ZmEyOTkwMDRhODJkOTZjOWEyNGFhNw==
+  sha1: !binary |-
+    YjBkZDRmODA5NjA3OWMyYjY3ZDM1ZTQxMmU1NWNhZmQyMjA1MjViNg==
+  fingerprint: !binary |-
+    NDg0MDc1ZDgxZDQxY2UzOTg1ZmEyOTkwMDRhODJkOTZjOWEyNGFhNw==
+  dependencies: []
+- name: sensu
+  version: !binary |-
+    M2U3ZWM3MWM1NGJjZmM2MzdkNTI0YTU0ZGIwYzQ5ZmY1MTQ5NGRlNQ==
+  sha1: !binary |-
+    ZThiZDIwNWEyYThmNTA4OTFiYTVmMTNlOGRkM2FhMGVjMzM3YTI4NA==
+  fingerprint: !binary |-
+    M2U3ZWM3MWM1NGJjZmM2MzdkNTI0YTU0ZGIwYzQ5ZmY1MTQ5NGRlNQ==
+  dependencies:
+  - sensu-ruby
+- name: sensu-libyaml
+  version: !binary |-
+    ZDQ5NzRiNjk5OTQ5ODJhZTBjMzIwZmE1ZDBmZmFlMGU3MzNmMTgzZg==
+  sha1: !binary |-
+    NDNjMjBkZWJmZjYxMzU0NzU0NmUxNWQ1N2I4ZmI5MGU1YmQyZGQ5ZQ==
+  fingerprint: !binary |-
+    ZDQ5NzRiNjk5OTQ5ODJhZTBjMzIwZmE1ZDBmZmFlMGU3MzNmMTgzZg==
+  dependencies: []
+- name: sensu-ruby
+  version: !binary |-
+    M2VkMmYxMGIyY2VjYjU4OTdmN2YyZDc5YjVlMjZhNDAxODI4OGVmNg==
+  sha1: !binary |-
+    MDUzN2RlOTBmNjM3YTY0MTU0ODc2MjQ3YWQxNTYyZDljMDJjZDcwZA==
+  fingerprint: !binary |-
+    M2VkMmYxMGIyY2VjYjU4OTdmN2YyZDc5YjVlMjZhNDAxODI4OGVmNg==
+  dependencies:
+  - sensu-libyaml
+- name: sensu_client
+  version: !binary |-
+    Mzg2M2IwZDFlMjBjZWExNWUzMDk1OGY2ZjhmMmQ1YTZkMTM5ZTFkZQ==
+  sha1: !binary |-
+    Zjk0ZGM5MWUzNzgwYmQ1ZWRlZWUwZDFjYjBkZmUxMDNlMjczOGUwMQ==
+  fingerprint: !binary |-
+    Mzg2M2IwZDFlMjBjZWExNWUzMDk1OGY2ZjhmMmQ1YTZkMTM5ZTFkZQ==
+  dependencies: []
+- name: yajl
+  version: !binary |-
+    NjE1ODdlOGQwMTVlMmQ2MGQzOWIyZTUxYjRhZTMxMTRkYTQxYWI1Mw==
+  sha1: !binary |-
+    NDM2MGVhYjA4Mjk0NjQ2ZjkzNzYzNDM3NzM3ZjQ1NTdlZjYyZTcxMg==
+  fingerprint: !binary |-
+    NjE1ODdlOGQwMTVlMmQ2MGQzOWIyZTUxYjRhZTMxMTRkYTQxYWI1Mw==
+  dependencies: []
+jobs:
+- name: collectd
+  version: !binary |-
+    MWZiZmY2MWM3NTkyYWVmYWNiNjkzM2JlYWI5YTIzNjI2MGNmMTEzYw==
+  fingerprint: !binary |-
+    MWZiZmY2MWM3NTkyYWVmYWNiNjkzM2JlYWI5YTIzNjI2MGNmMTEzYw==
+  sha1: !binary |-
+    NzJhNzMxMWUzNTBmNDVkZmIxOTY3YTUwMGZmMTU2ZGM1YmI5MTYxNw==
+- name: sensu_client
+  version: !binary |-
+    ZTg0MDllMWUxMDBhNjFlNWI4ZWI2OTNjMWNiZmRhMTk3ZGQxNjQ2MA==
+  fingerprint: !binary |-
+    ZTg0MDllMWUxMDBhNjFlNWI4ZWI2OTNjMWNiZmRhMTk3ZGQxNjQ2MA==
+  sha1: !binary |-
+    Yjc2MjFmZDNmMzAxODcyMWQ1ZWI4NzdiZTczNWMwODQxOGE5NWZjMg==
+commit_hash: 579749af
+uncommitted_changes: true
+name: sensu-client
+version: '3'

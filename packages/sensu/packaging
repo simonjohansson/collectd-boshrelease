@@ -10,6 +10,7 @@ set -u # report the usage of uninitialized variables
 
 # Version of Sensu we are packaging.
 SENSU_VERSION="0.13.1"
+BUNDLE="/var/vcap/packages/sensu-ruby/bin/bundle"
 
 tar -xvf sensu/sensu-${SENSU_VERSION}.tar.gz
 
@@ -17,6 +18,6 @@ mv sensu-${SENSU_VERSION}/* ${BOSH_INSTALL_TARGET}
 
 (
     cd ${BOSH_INSTALL_TARGET}
-    /var/vcap/packages/ruby/bin/bundle
-    /var/vcap/packages/ruby/bin/bundle install --deployment
+    ${BUNDLE}
+    ${BUNDLE} install --deployment
 )

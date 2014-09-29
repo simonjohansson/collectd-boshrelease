@@ -33,7 +33,7 @@ tar xzf ruby/ruby-${RUBY_VERSION}.tar.gz
 (
   set -e
   cd ruby-${RUBY_VERSION}
-  ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-install-doc --with-opt-dir=/var/vcap/packages/libyaml
+  ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-install-doc --with-opt-dir=/var/vcap/packages/sensu-libyaml
   make -j${CORES}
   make install
 )

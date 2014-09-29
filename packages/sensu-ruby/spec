@@ -1,5 +1,5 @@
 ---
-name: ruby
+name: sensu-ruby
 meta:
   rubygems:
     source: https://rubygems.org/pages/download
@@ -11,7 +11,7 @@ meta:
     source: https://www.ruby-lang.org/en/downloads/
     direct: http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.3.tar.gz
 dependencies:
-  - libyaml
+  - sensu-libyaml
 files:
   - ruby/ruby-2.1.3.tar.gz
   - ruby/rubygems-2.4.1.tgz

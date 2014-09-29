@@ -13,7 +13,8 @@ templates:
   etc/rabbitmq.json.erb:     etc/sensu/conf.d/rabbitmq.json
 
 packages:
-  - ruby
+  - sensu-libyaml
+  - sensu-ruby
   - sensu
   - sensu_client
   - nagios-monitoring-plugins

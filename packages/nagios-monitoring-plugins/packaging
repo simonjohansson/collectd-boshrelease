@@ -18,3 +18,11 @@ gzip -dc nagios-monitoring-plugins/monitoring-plugins-${NMP_VERSION}.tar.gz | ta
     make
     make install
 )
+
+(
+    # Install a wrapper for the default Nagios check_swap
+    # BOSH boxes do not have swap so a CRITICAL check when no swap is available in not useful
+    mv ${BOSH_INSTALL_TARGET}/libexec/check_swap ${BOSH_INSTALL_TARGET}/libexec/check_swap_impl
+    mv nagios_checks/check_swap ${BOSH_INSTALL_TARGET}/libexec/check_swap
+    chmod 755 ${BOSH_INSTALL_TARGET}/libexec/check_swap
+)

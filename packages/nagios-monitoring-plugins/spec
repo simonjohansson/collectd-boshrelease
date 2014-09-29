@@ -5,3 +5,4 @@ meta:
  - direct: https://www.monitoring-plugins.org/download/monitoring-plugins-2.0.tar.gz
 files:
   - nagios-monitoring-plugins/monitoring-plugins-2.0.tar.gz
+  - nagios_checks/check_swap

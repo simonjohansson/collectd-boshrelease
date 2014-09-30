@@ -65,3 +65,8 @@ sensu/sensu-0.13.1.tar.gz:
   sha: !binary |-
     NTE3ZTA1OWJiNWQ4ODg1NmU2NDNlOTQzNjdkNzU4OGZiMTA1NjAzNQ==
   size: 46461
+sensu/sensu-0.14.0.tar.gz:
+  object_id: c5f5efc9-c489-4eab-abef-456443b8f62f
+  sha: !binary |-
+    ZDg3M2ZhNzAwN2Q2MjIwMTA3YTgxMjg3MmNmYWY0ZTk5MTllOTMyMg==
+  size: 50719

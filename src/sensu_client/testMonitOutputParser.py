@@ -121,6 +121,38 @@ System 'system_2f06434c-b234-4585-9962-8275a09dadfa'
   swap usage                        0 kB [0.0%]
   data collected                    Tue Sep  2 13:26:42 2014"""
 
+        self.test_output_monit_status_job_pending="""
+The Monit daemon 5.2.4 uptime: 19m
+
+Process 'jenkins_master'
+  status                            running
+  monitoring status                 monitored
+  pid                               27102
+  parent pid                        1
+  uptime                            15d 1h 58m
+  children                          0
+  memory kilobytes                  3288416
+  memory kilobytes total            3288416
+  memory percent                    40.1%
+  memory percent total              40.1%
+  cpu percent                       0.0%
+  cpu percent total                 0.0%
+  data collected                    Tue Sep  2 13:26:41 2014
+
+Process 'configure_jenkins'
+  status                            restart pending
+  monitoring status                 monitored
+  data collected                    Tue Sep  2 13:26:42 2014
+
+System 'system_2f06434c-b234-4585-9962-8275a09dadfa'
+  status                            running
+  monitoring status                 monitored
+  load average                      [0.74] [0.86] [0.92]
+  cpu                               0.0%us 0.0%sy 0.2%wa
+  memory usage                      3527292 kB [43.0%]
+  swap usage                        0 kB [0.0%]
+  data collected                    Tue Sep  2 13:26:42 2014"""
+
 
     # Make sure the summary parser returns the correct number of jobs
     def test_monit_summary_correct_number_jobs_returned(self):
@@ -186,6 +218,15 @@ System 'system_2f06434c-b234-4585-9962-8275a09dadfa'
         self.assertTrue(monit_status['configure_jenkins']['monitoring status'] == 'monitored')
         self.assertTrue(monit_status['nginx_jenkins_master']['status'] == 'not monitored')
         self.assertTrue(monit_status['nginx_jenkins_master']['monitoring status'] == 'not monitored')
+
+    # Make sure the status parser works if a job is in a pending (user action) state
+    def test_monit_status_correct_when_jobs_are_pending(self):
+        monit_status = MonitOutputParser().parse_status(self.test_output_monit_status_job_pending)
+        self.assertEqual(len(monit_status.keys()), 2)
+        self.assertTrue(monit_status['jenkins_master']['status'] == 'running')
+        self.assertTrue(monit_status['jenkins_master']['monitoring status'] == 'monitored')
+        self.assertTrue(monit_status['configure_jenkins']['status'] == 'restart pending')
+        self.assertTrue(monit_status['configure_jenkins']['monitoring status'] == 'monitored')
 
 if __name__ == '__main__':
     unittest.main()

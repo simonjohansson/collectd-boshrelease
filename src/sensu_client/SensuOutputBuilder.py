@@ -11,7 +11,7 @@ class SensuOutputBuilder:
 
     def __init__(self):
 
-        self.npre_codes = {'running' : 0}
+        self.npre_codes = {'running' : 0 , 'stop pending' : 1 , 'start pending' : 1, 'restart pending' : 1 }
         self.sensu_handlers = ['default']
     
 

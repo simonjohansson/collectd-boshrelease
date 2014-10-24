@@ -11,7 +11,6 @@ class SensuOutputBuilder:
 
     def __init__(self):
 
-        # https://www.pivotaltracker.com/story/show/79696750 - Only overriding status to warning on 'safe' pending alerts. not '<any> pending'
         self.npre_codes = {'running' : 0 , 'stop pending' : 1 , 'start pending' : 1, 'restart pending' : 1 }
         self.sensu_handlers = ['default']
     

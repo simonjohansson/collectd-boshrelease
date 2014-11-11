@@ -57,12 +57,6 @@ do
   export PATH=${package_bin_dir}:$PATH
 done
 
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-''} # default to empty
-for package_bin_dir in $(ls -d /var/vcap/packages/*/lib)
-do
-  export LD_LIBRARY_PATH=${package_bin_dir}:$LD_LIBRARY_PATH
-done
-
 # Setup log, run and tmp folders
 export RUN_DIR=/var/vcap/sys/run/$JOB_NAME
 export LOG_DIR=/var/vcap/sys/log/$JOB_NAME

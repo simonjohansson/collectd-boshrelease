@@ -18,6 +18,7 @@ packages:
   - sensu
   - sensu_client
   - nagios-monitoring-plugins
+  - python
 
 properties:
   sensu.client.subscriptions:

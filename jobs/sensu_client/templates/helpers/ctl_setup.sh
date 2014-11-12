@@ -57,6 +57,10 @@ do
   export PATH=${package_bin_dir}:$PATH
 done
 
+# Add our Python libraries to the Sensu LD_LIBRARY_PATH so we can run our monit checks.
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-''} # default to empty, avoid unbound variable
+export LD_LIBRARY_PATH=/var/vcap/packages/python/lib:$LD_LIBRARY_PATH
+
 # Setup log, run and tmp folders
 export RUN_DIR=/var/vcap/sys/run/$JOB_NAME
 export LOG_DIR=/var/vcap/sys/log/$JOB_NAME
@@ -85,3 +89,5 @@ fi
 PIDFILE=$RUN_DIR/$output_label.pid
 
 echo '$PATH' $PATH
+
+

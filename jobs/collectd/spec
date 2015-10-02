@@ -11,7 +11,6 @@ templates:
 
   config/collectd.conf.erb:           config/collectd.conf
   collectd.d/csv.conf.erb:            collectd.d/csv.conf
-  collectd.d/sensu.conf.erb:          collectd.d/sensu.conf
   collectd.d/05-syslog.conf.erb:      collectd.d/05-syslog.conf
   collectd.d/10-cpu.conf.erb:         collectd.d/10-cpu.conf
   collectd.d/10-df.conf.erb:          collectd.d/10-df.conf
@@ -65,18 +64,6 @@ properties:
   collectd.csv_output_enabled:
     default: false
     description: "Enable CSV output for Collectd (useful for debugging, suggest off for production)."
-
-  collectd.sensu_output_enabled:
-    default: true
-    description: "Enable Sensu output for Collectd"
-
-  collectd.sensu_output_host:
-    default: "localhost"
-    description: "The host that the Sensu output will send data to. Ie: sensu_output_host:sensu_output_port"
-
-  collectd.sensu_output_port:
-    default: 3030
-    description: "The port the Sensu output will send data to. Ie: sensu_output_host:sensu_output_port"
 
   #
   # Configure CollectD Interation with the GoRouter

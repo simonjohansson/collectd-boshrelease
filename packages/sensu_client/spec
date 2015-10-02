@@ -1,6 +1,0 @@
----
-name: sensu_client
-files:
-- sensu_client/parsemonit.py
-- sensu_client/MonitOutputParser.py
-- sensu_client/SensuOutputBuilder.py

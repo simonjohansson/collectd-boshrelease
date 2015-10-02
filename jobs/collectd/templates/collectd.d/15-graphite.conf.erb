@@ -1,0 +1,15 @@
+LoadPlugin "write_graphite"
+<Plugin "write_graphite">
+ <Node "myNode">
+   Host "<%= p("graphite.server") %>"
+   Port "<%= p("graphite.port") %>"
+   Prefix "<%= p("graphite.prefix") %>"
+   #Postfix ""
+   #Protocol "udp"
+   #LogSendErrors false
+   EscapeCharacter "_"
+   SeparateInstances true
+   StoreRates false
+   AlwaysAppendDS false
+ </Node>
+</Plugin>

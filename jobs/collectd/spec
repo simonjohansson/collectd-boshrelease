@@ -23,6 +23,7 @@ templates:
   collectd.d/10-swap.conf.erb:        collectd.d/10-swap.conf
   collectd.d/10-uptime.conf.erb:      collectd.d/10-uptime.conf
   collectd.d/10-vmem.conf.erb:        collectd.d/10-vmem.conf
+  collectd.d/15-graphite.conf.erb:    collectd.d/15-graphite.conf
 
   collectd.d_dynamic/20-cf-gorouter.conf.erb:   collectd.d_dynamic/20-cf-gorouter.conf
 
@@ -82,4 +83,18 @@ properties:
   router.status.password:
     description: "Password for HTTP basic auth to the varz/status endpoint."
 
+  #
+  # Graphite plugin configuration
+  #
+
+  graphite.server:
+    description: "Address of the graphite server"
+
+  graphite.port:
+    description: "Carbon API port on the graphite server"
+    default: 2003
+
+  graphite.prefix:
+    description: "Prefix for the metrics collected by collectd"
+    default: "."
 

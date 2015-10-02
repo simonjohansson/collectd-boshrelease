@@ -10,7 +10,6 @@ templates:
   bin/monit_debugger:                 bin/monit_debugger
 
   config/collectd.conf.erb:           config/collectd.conf
-  collectd.d/csv.conf.erb:            collectd.d/csv.conf
   collectd.d/05-syslog.conf.erb:      collectd.d/05-syslog.conf
   collectd.d/10-cpu.conf.erb:         collectd.d/10-cpu.conf
   collectd.d/10-df.conf.erb:          collectd.d/10-df.conf
@@ -57,14 +56,6 @@ properties:
   collectd.syslog_loglevel:
     default: "warning"
     description: "Sets the log-level. Valid values: debug|notice|info|warning|err"
-
-  #
-  # Configure CollectD Sensu Output
-  #
-
-  collectd.csv_output_enabled:
-    default: false
-    description: "Enable CSV output for Collectd (useful for debugging, suggest off for production)."
 
   #
   # Configure CollectD Interation with the GoRouter

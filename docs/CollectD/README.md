@@ -3,28 +3,9 @@
 The [CollectD](http://collectd.org/) Job in this release deploys CollectD onto a BOSH managed Machine.
 
 
-## Getting Data From CollectD
+## Connecting to graphite
 
-Currently there are two output options for the CollectD data:
-
-1. **Sensu**
-
-	Enabled by default. This can be configured in your BOSH manifest:
-	
-	    collectd.sensu_output_enabled: [true|false]
-
-    CollectD data will be sent to a local Sensu Client [using a CollectD plugin](https://github.com/jhmartin/collectd-sensu). By default the Sensu output expects the Sensu Client to listen on ```localhost:3030```.
-
-
-2. **CSV**
-
-	Disabled by default. This can be enabled in your BOSH manifest:
-	
-		collectd.csv_output_enabled: [true|false]
-		
-    CSVs will be written to the directory:
-    
-	    /var/vcap/sys/run/collectd/
+Configure graphite.server and optionally graphite.port properties (unless you want to use default port 2003). You can also configure collectd prefix via graphite.prefix property.
 	
 ## Dynamic Configuration (collectd.d_dynamic)
 

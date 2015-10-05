@@ -1,9 +1,0 @@
----
-name: sensu
-meta:
-  source: https://github.com/sensu/sensu/releases
-  direct: https://github.com/sensu/sensu/archive/v0.14.0.tar.gz
-dependencies:
-  - sensu-ruby
-files:
-  - sensu/sensu-0.14.0.tar.gz

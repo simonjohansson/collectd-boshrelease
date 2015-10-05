@@ -51,6 +51,3 @@ tar xzf collectd/collectd-5.4.1.tar.gz
 )
 
 mkdir -p $BOSH_INSTALL_TARGET/python
-
-# Install the Sensu Plugin
-cp -v collectd/sensu.py $BOSH_INSTALL_TARGET/python/.

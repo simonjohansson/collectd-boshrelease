@@ -8,4 +8,3 @@ dependencies:
   - yajl
 files:
   - collectd/collectd-5.4.1.tar.gz
-  - collectd/sensu.py

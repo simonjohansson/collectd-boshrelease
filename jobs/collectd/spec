@@ -10,8 +10,6 @@ templates:
   bin/monit_debugger:                 bin/monit_debugger
 
   config/collectd.conf.erb:           config/collectd.conf
-  collectd.d/csv.conf.erb:            collectd.d/csv.conf
-  collectd.d/sensu.conf.erb:          collectd.d/sensu.conf
   collectd.d/05-syslog.conf.erb:      collectd.d/05-syslog.conf
   collectd.d/10-cpu.conf.erb:         collectd.d/10-cpu.conf
   collectd.d/10-df.conf.erb:          collectd.d/10-df.conf
@@ -24,6 +22,7 @@ templates:
   collectd.d/10-swap.conf.erb:        collectd.d/10-swap.conf
   collectd.d/10-uptime.conf.erb:      collectd.d/10-uptime.conf
   collectd.d/10-vmem.conf.erb:        collectd.d/10-vmem.conf
+  collectd.d/15-graphite.conf.erb:    collectd.d/15-graphite.conf
 
   collectd.d_dynamic/20-cf-gorouter.conf.erb:   collectd.d_dynamic/20-cf-gorouter.conf
 
@@ -59,26 +58,6 @@ properties:
     description: "Sets the log-level. Valid values: debug|notice|info|warning|err"
 
   #
-  # Configure CollectD Sensu Output
-  #
-
-  collectd.csv_output_enabled:
-    default: false
-    description: "Enable CSV output for Collectd (useful for debugging, suggest off for production)."
-
-  collectd.sensu_output_enabled:
-    default: true
-    description: "Enable Sensu output for Collectd"
-
-  collectd.sensu_output_host:
-    default: "localhost"
-    description: "The host that the Sensu output will send data to. Ie: sensu_output_host:sensu_output_port"
-
-  collectd.sensu_output_port:
-    default: 3030
-    description: "The port the Sensu output will send data to. Ie: sensu_output_host:sensu_output_port"
-
-  #
   # Configure CollectD Interation with the GoRouter
   #
   collectd.gorouter_varz_monitoring_enabled:
@@ -95,4 +74,18 @@ properties:
   router.status.password:
     description: "Password for HTTP basic auth to the varz/status endpoint."
 
+  #
+  # Graphite plugin configuration
+  #
+
+  graphite.server:
+    description: "Address of the graphite server"
+
+  graphite.port:
+    description: "Carbon API port on the graphite server"
+    default: 2003
+
+  graphite.prefix:
+    description: "Prefix for the metrics collected by collectd"
+    default: "."
 

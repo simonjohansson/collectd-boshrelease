@@ -1,30 +1,9 @@
 ---
-sensu_client/sensu_0.12.6-5_amd64.deb:
-  object_id: 613cb823-8465-4dd4-af0f-c17b58dde388
-  sha: c3d55d0b3de6f069d1ba70078454ce9169aade64
-  size: 38079392
-nrpe_plugins/nagios-plugins-basic_1.4.14-1ubuntu1_amd64.deb:
-  object_id: 90705c55-1259-48da-b3d9-a4a2e2abcf65
-  sha: 0444a67e726e1cd27a87571490e34d7db6544cc2
-  size: 757294
-nrpe_plugins/nagios-plugins-standard_1.4.14-1ubuntu1_amd64.deb:
-  object_id: 1e4d56f8-aa8b-4763-bff0-e7df0c9814ce
-  sha: 3d6cc4ab3b7074d916b8210d96b5c22a6eddb157
-  size: 321266
-nrpe_plugins/nagios-plugins_1.4.14-1ubuntu1_all.deb:
-  object_id: 24ad2319-3437-4706-9494-8d9f790cc521
-  sha: 347b306797761db726c81fde509f53238d20c790
-  size: 138184
 collectd/collectd-5.4.1.tar.gz:
   object_id: 1550de5d-fbec-4f44-838d-c491161e9ef1
   sha: !binary |-
     ZmFhY2NhYzRkYWY0ODQ0OWJjZWZjOWQ2ZjkyMzZmOThhNWRkNWI0Yg==
   size: 1894132
-python/Python-2.7.6.tgz:
-  object_id: d0b8aa77-968c-472a-b926-e2fc36cbed56
-  sha: !binary |-
-    ODMyOGQ5ZjFkNTU1NzRhMjg3ZGYzODRmNDkzMWEzOTQyZjAzZGE2NA==
-  size: 14725931
 yajl/yajl-2.1.0.tar.gz:
   object_id: 753c7014-9847-431b-a1ee-7eb438f99f3b
   sha: !binary |-
@@ -35,38 +14,3 @@ python/Python-2.7.8.tgz:
   sha: !binary |-
     NTExOTYwZGQ3ODQ1MWEwNmM5ZGY3NjUwOTYzNWFlZWMwNWIyMDUxYQ==
   size: 14846119
-libyaml/yaml-0.1.5.tar.gz:
-  object_id: f5980894-6583-4d09-a0e9-4d54640e3a9b
-  sha: !binary |-
-    OGI3OGNiOWY3NTljN2Q4MGRiOGE3MzI4YzBlYmVjZmUzNGZkZTczNw==
-  size: 504897
-nagios-monitoring-plugins/monitoring-plugins-2.0.tar.gz:
-  object_id: 3d0983a4-1783-479d-aa76-10cf577ea0b3
-  sha: !binary |-
-    NjYxNDBkZTFkYmM5NzE1ZWU4ZDk3OThlN2QzNDVhZjUzZDU0NDg3ZA==
-  size: 2610000
-ruby/bundler-1.7.3.gem:
-  object_id: 6859171c-db99-4e49-a1d0-148ffa97ec82
-  sha: !binary |-
-    NjE4ZmRmNzZmMzVlODczZTQ5MGUxNWNkYWM4N2JlN2Y3MjQ3ZjgxYg==
-  size: 299520
-ruby/ruby-2.1.3.tar.gz:
-  object_id: 269cfc83-2c3a-4be7-9e6d-663d538898f3
-  sha: !binary |-
-    Y2E2ZTEyMGU1YTJlZTdkZWIzYTc0OTM2OTZiNWJiYzI4YmZjMjIzNg==
-  size: 15129183
-ruby/rubygems-2.4.1.tgz:
-  object_id: 58b7640c-7f27-48ac-a7a5-5a4b84734612
-  sha: !binary |-
-    MDE2Yjk4ZDhmZmNhM2IxYWY0Yzc5Nzc4OGQ3NWMxYTY3ZjM4ZDQxZA==
-  size: 437226
-sensu/sensu-0.13.1.tar.gz:
-  object_id: f8406dac-2267-4fbc-b3c8-7f53f9df62fb
-  sha: !binary |-
-    NTE3ZTA1OWJiNWQ4ODg1NmU2NDNlOTQzNjdkNzU4OGZiMTA1NjAzNQ==
-  size: 46461
-sensu/sensu-0.14.0.tar.gz:
-  object_id: c5f5efc9-c489-4eab-abef-456443b8f62f
-  sha: !binary |-
-    ZDg3M2ZhNzAwN2Q2MjIwMTA3YTgxMjg3MmNmYWY0ZTk5MTllOTMyMg==
-  size: 50719
